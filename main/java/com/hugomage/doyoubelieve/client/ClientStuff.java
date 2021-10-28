@@ -4,6 +4,7 @@ import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.client.renderer.BigfootRenderer;
 import com.hugomage.doyoubelieve.client.renderer.FresnoRenderer;
 import com.hugomage.doyoubelieve.client.renderer.JerseyDevilRenderer;
+import com.hugomage.doyoubelieve.client.renderer.MothmanRenderer;
 import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.hugomage.doyoubelieve.item.ModSpawnEggItem;
 import com.hugomage.doyoubelieve.registerys.ModEntityTypes;
@@ -24,6 +25,7 @@ public class ClientStuff {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BIGFOOT.get(), BigfootRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JERSEY_DEVIL.get(), JerseyDevilRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FRESNO.get(), FresnoRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MOTHMAN.get(), MothmanRenderer::new);
     }
 
 

@@ -37,7 +37,7 @@ public class BigfootEntity extends AnimalEntity {
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 80.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.30D)
-                .add(Attributes.ATTACK_DAMAGE, 7D)
+                .add(Attributes.ATTACK_DAMAGE, 10D)
                 .add(Attributes.ATTACK_SPEED, 6D)
                 .add(Attributes.ATTACK_KNOCKBACK, 1D);
     }

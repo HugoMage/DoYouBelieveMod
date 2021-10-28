@@ -4,6 +4,7 @@ import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.hugomage.doyoubelieve.entities.FresnoEntity;
 import com.hugomage.doyoubelieve.entities.JerseyDevilEntity;
+import com.hugomage.doyoubelieve.entities.MothmanEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -26,6 +27,10 @@ public class ModEntityTypes {
             EntityType.Builder.of(FresnoEntity::new, EntityClassification.MONSTER)
                     .sized(1.0f,1.5f)
                     .build(new ResourceLocation(DoYouBelieve.MOD_ID, "fresno_nightcrawler").toString()));
+    public static final RegistryObject<EntityType<MothmanEntity>> MOTHMAN = ENTITY_TYPES.register("mothman", ()->
+            EntityType.Builder.of(MothmanEntity::new, EntityClassification.MONSTER)
+                    .sized(1.2f,2.5f)
+                    .build(new ResourceLocation(DoYouBelieve.MOD_ID, "mothman").toString()));
 
 
 }

@@ -4,6 +4,7 @@ import com.hugomage.doyoubelieve.client.ClientStuff;
 import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.hugomage.doyoubelieve.entities.FresnoEntity;
 import com.hugomage.doyoubelieve.entities.JerseyDevilEntity;
+import com.hugomage.doyoubelieve.entities.MothmanEntity;
 import com.hugomage.doyoubelieve.registerys.ItemsRegistry;
 import com.hugomage.doyoubelieve.registerys.ModEntityTypes;
 import net.minecraft.block.Block;
@@ -56,6 +57,7 @@ public class DoYouBelieve
             GlobalEntityTypeAttributes.put(ModEntityTypes.BIGFOOT.get(), BigfootEntity.setCustomAttributes().build());
             GlobalEntityTypeAttributes.put(ModEntityTypes.JERSEY_DEVIL.get(), JerseyDevilEntity.setCustomAttributes().build());
             GlobalEntityTypeAttributes.put(ModEntityTypes.FRESNO.get(), FresnoEntity.setCustomAttributes().build());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.MOTHMAN.get(), MothmanEntity.setCustomAttributes().build());
         });
 
         // some preinit code
