@@ -4,13 +4,15 @@ import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
+import net.minecraft.client.renderer.entity.model.IHasArm;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 
-public class BigfootModel<T extends BigfootEntity> extends AgeableModel<T> {
+public class BigfootModel<T extends BigfootEntity> extends AgeableModel<T>  implements IHasArm {
     private final ModelRenderer bb_main;
     private final ModelRenderer body;
-    private final ModelRenderer head;
+    public final ModelRenderer head;
     private final ModelRenderer rarm;
     private final ModelRenderer rleg;
     private final ModelRenderer lleg;
@@ -70,11 +72,26 @@ public class BigfootModel<T extends BigfootEntity> extends AgeableModel<T> {
         this.rarm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         this.larm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         int i = entityIn.getAttackAnimationRemainingTicks();
+        int i1 = entityIn.getEatAnimation();
         if (i > 0) {
             float p_212843_4_ = 0;
             this.rarm.xRot = -2.0F + 1.5F * MathHelper.triangleWave((float) i - p_212843_4_, 10.0F);
             this.larm.xRot = -2.0F + 1.5F * MathHelper.triangleWave((float) i - p_212843_4_, 10.0F);
         }
+        if (i1 > 0) {
+            float p_225597_4_ = 0;
+            this.head.xRot = ((float)Math.PI / 2F) + 0.2F * MathHelper.sin(p_225597_4_ * 0.6F);
+            this.larm.xRot = -0.4F - 0.2F * MathHelper.sin(p_225597_4_ * 0.6F);
+
+        }
+    }
+    @Override
+    public void translateToHand(HandSide sideIn, MatrixStack matrixStackIn) {
+        this.getArm(sideIn).translateAndRotate(matrixStackIn);
+    }
+    public ModelRenderer getArm(HandSide p_1912161)
+    {
+        return p_1912161 == HandSide.LEFT ? this.larm : this.rarm;
     }
     @Override
     public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
@@ -91,7 +108,9 @@ public class BigfootModel<T extends BigfootEntity> extends AgeableModel<T> {
         return null;
     }
 
-
+    public ModelRenderer getFlowerHoldingArm() {
+        return this.larm;
+    }
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
         modelRenderer.yRot = y;

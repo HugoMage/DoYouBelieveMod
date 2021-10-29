@@ -7,8 +7,11 @@ import com.hugomage.doyoubelieve.client.renderer.JerseyDevilRenderer;
 import com.hugomage.doyoubelieve.client.renderer.MothmanRenderer;
 import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.hugomage.doyoubelieve.item.ModSpawnEggItem;
+import com.hugomage.doyoubelieve.registerys.ItemsRegistry;
 import com.hugomage.doyoubelieve.registerys.ModEntityTypes;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
@@ -26,6 +29,7 @@ public class ClientStuff {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JERSEY_DEVIL.get(), JerseyDevilRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FRESNO.get(), FresnoRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MOTHMAN.get(), MothmanRenderer::new);
+        RenderTypeLookup.setRenderLayer(ItemsRegistry.BIGFOOT_TRACKS.get(), RenderType.translucent());
     }
 
 

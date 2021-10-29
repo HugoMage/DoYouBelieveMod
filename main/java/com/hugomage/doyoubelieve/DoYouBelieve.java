@@ -7,6 +7,7 @@ import com.hugomage.doyoubelieve.entities.JerseyDevilEntity;
 import com.hugomage.doyoubelieve.entities.MothmanEntity;
 import com.hugomage.doyoubelieve.registerys.ItemsRegistry;
 import com.hugomage.doyoubelieve.registerys.ModEntityTypes;
+import com.hugomage.doyoubelieve.registerys.ModSoundEventTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
@@ -49,6 +50,7 @@ public class DoYouBelieve
         MinecraftForge.EVENT_BUS.register(this);
         ModEntityTypes.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
         ItemsRegistry.init();
+        ModSoundEventTypes.SOUND_EVENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void setup(final FMLCommonSetupEvent event)

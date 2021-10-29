@@ -2,9 +2,14 @@ package com.hugomage.doyoubelieve.registerys;
 
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
+import com.hugomage.doyoubelieve.block.BigFeetCarpet;
 import com.hugomage.doyoubelieve.item.ModSpawnEggItem;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -42,5 +47,11 @@ public class ItemsRegistry {
     //tools
 
     // Blocks
+    public static final RegistryObject<BigFeetCarpet> BIGFOOT_TRACKS = BLOCKS.register("bigfoot_tracks", BigFeetCarpet::new);
+
+
+
     // Block Items
+    public static final RegistryObject<Item> BIGFOOT_TRACKS_ITEM = ITEMS.register("bigfoot_tracks", () -> new BlockItem(BIGFOOT_TRACKS.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+
     }

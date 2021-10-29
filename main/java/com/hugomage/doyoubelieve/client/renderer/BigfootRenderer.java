@@ -7,6 +7,7 @@ import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 
@@ -25,6 +26,7 @@ public class BigfootRenderer extends MobRenderer<BigfootEntity, BigfootModel<Big
 
     public BigfootRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new BigfootModel(), 0.8F);
+        this.addLayer(new BigfootHeldItemLayer(this));
     }
     @Override
     public ResourceLocation getTextureLocation(BigfootEntity entity) {

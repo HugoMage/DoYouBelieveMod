@@ -1,5 +1,6 @@
 package com.hugomage.doyoubelieve.client.renderer;
 
+import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.client.model.MothmanModel;
 import com.hugomage.doyoubelieve.entities.MothmanEntity;
 import net.minecraft.client.renderer.RenderType;
@@ -12,7 +13,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class MothmanEyeLayer<T extends MothmanEntity, M extends MothmanModel<T>> extends AbstractEyesLayer<T, M>{
-        private static final RenderType MOTHMAN_EYES = RenderType.eyes(new ResourceLocation("textures/entity/mothman_eyes.png"));
+    protected static final RenderType MOTHMAN_EYES = RenderType.eyes(new ResourceLocation(DoYouBelieve.MOD_ID, "textures/entity/mothman_eyes.png"));
         public MothmanEyeLayer(IEntityRenderer<T, M> p_i50921_1_) {
             super(p_i50921_1_);
         }
