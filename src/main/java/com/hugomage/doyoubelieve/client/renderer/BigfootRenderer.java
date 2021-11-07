@@ -12,8 +12,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 
 public class BigfootRenderer extends MobRenderer<BigfootEntity, BigfootModel<BigfootEntity>> {
-
     protected static final ResourceLocation TEXTURE = new ResourceLocation(DoYouBelieve.MOD_ID, "textures/entity/bigfoot.png");
+
+    public BigfootRenderer(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new BigfootModel<>(), 0.8F);
+        this.addLayer(new BigfootHeldItemLayer(this));
+    }
+
     protected void setupRotations(BigfootEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
         super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
         if (!((double)entityLiving.animationSpeedOld < 0.01D)) {
@@ -24,10 +29,6 @@ public class BigfootRenderer extends MobRenderer<BigfootEntity, BigfootModel<Big
         }
     }
 
-    public BigfootRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new BigfootModel(), 0.8F);
-        this.addLayer(new BigfootHeldItemLayer(this));
-    }
     @Override
     public ResourceLocation getTextureLocation(BigfootEntity entity) {
         return TEXTURE;

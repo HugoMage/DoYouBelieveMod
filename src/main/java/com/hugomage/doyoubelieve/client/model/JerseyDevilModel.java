@@ -1,6 +1,5 @@
 package com.hugomage.doyoubelieve.client.model;
 
-import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.hugomage.doyoubelieve.entities.JerseyDevilEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -90,6 +89,7 @@ public class JerseyDevilModel<T extends JerseyDevilEntity> extends AgeableModel<
         this.lwing.zRot = MathHelper.cos(f) * -16.0F * ((float)Math.PI / 180F);
         this.rwing.zRot = MathHelper.cos(f) * 16.0F * ((float)Math.PI / 180F);
     }
+
     @Override
     public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         body.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
@@ -104,7 +104,6 @@ public class JerseyDevilModel<T extends JerseyDevilEntity> extends AgeableModel<
     protected Iterable<ModelRenderer> bodyParts() {
         return null;
     }
-
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;

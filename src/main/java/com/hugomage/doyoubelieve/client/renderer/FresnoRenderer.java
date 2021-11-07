@@ -15,7 +15,7 @@ public class FresnoRenderer extends MobRenderer<FresnoEntity, FresnoModel<Fresno
     protected static final ResourceLocation TEXTURE = new ResourceLocation(DoYouBelieve.MOD_ID, "textures/entity/fresno_nightcrawler.png");
 
     public FresnoRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new FresnoModel(), 0.8F);
+        super(renderManagerIn, new FresnoModel<>(), 0.8F);
     }
 
     protected void setupRotations(FresnoEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
