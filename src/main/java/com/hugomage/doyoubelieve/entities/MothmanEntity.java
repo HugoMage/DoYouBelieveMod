@@ -21,22 +21,9 @@ import javax.annotation.Nullable;
 
 public class MothmanEntity extends MonsterEntity implements IFlyingAnimal {
 
-
-
     public MothmanEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         this.moveControl = new FlyingMovementController(this, 10, false);
-    }
-    private int attackAnimationRemainingTicks;
-
-    public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
-        return MobEntity.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 80.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.30D)
-                .add(Attributes.FLYING_SPEED, 0.60D)
-                .add(Attributes.ATTACK_DAMAGE, 7D)
-                .add(Attributes.ATTACK_SPEED, 6D)
-                .add(Attributes.ATTACK_KNOCKBACK, 1D);
     }
 
     @Override
@@ -50,21 +37,35 @@ public class MothmanEntity extends MonsterEntity implements IFlyingAnimal {
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PlayerEntity.class, 6.0F, 1.0D, 1.2D));
     }
+
+    public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 80.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.30D)
+                .add(Attributes.FLYING_SPEED, 0.60D)
+                .add(Attributes.ATTACK_DAMAGE, 7D)
+                .add(Attributes.ATTACK_SPEED, 6D)
+                .add(Attributes.ATTACK_KNOCKBACK, 1D);
+    }
+
     protected PathNavigator createNavigation(World p_175447_1_) {
         FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, p_175447_1_);
         flyingpathnavigator.setCanOpenDoors(false);
         flyingpathnavigator.setCanFloat(true);
         return flyingpathnavigator;
     }
+
     public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
         return false;
     }
 
     protected void checkFallDamage(double p_184231_1_, boolean p_184231_3_, BlockState p_184231_4_, BlockPos p_184231_5_) {
     }
+
     public boolean isFlying() {
         return !this.onGround;
     }
+
     protected int getExperienceReward(PlayerEntity p_70693_1_) {
         if (this.isBaby()) {
             this.xpReward = (int)((float)this.xpReward * 6.5F);
@@ -80,14 +81,10 @@ public class MothmanEntity extends MonsterEntity implements IFlyingAnimal {
         return SoundEvents.IRON_GOLEM_ATTACK;
     }
 
-
     @Override
-    protected void playStepSound( BlockPos pos, BlockState blockIn )
-    {
-        if ( !blockIn.getMaterial().isLiquid() )
-        {
+    protected void playStepSound( BlockPos pos, BlockState blockIn ) {
+        if ( !blockIn.getMaterial().isLiquid() ) {
             this.playSound( SoundEvents.IRON_GOLEM_STEP, this.getSoundVolume() * 0.3F, this.getSoundVolume() );
         }
     }
-
 }
