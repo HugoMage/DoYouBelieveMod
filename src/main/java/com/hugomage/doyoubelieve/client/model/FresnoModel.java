@@ -1,11 +1,14 @@
 package com.hugomage.doyoubelieve.client.model;
 
+import com.google.common.collect.ImmutableList;
 import com.hugomage.doyoubelieve.entities.FresnoEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.Collections;
 
 public class FresnoModel<T extends FresnoEntity> extends AgeableModel<T> {
     private final ModelRenderer creature;
@@ -19,7 +22,6 @@ public class FresnoModel<T extends FresnoEntity> extends AgeableModel<T> {
 
         creature = new ModelRenderer(this);
         creature.setPos(0.0F, -1.0F, 0.0F);
-
 
         body = new ModelRenderer(this);
         body.setPos(0.0F, 7.0F, 0.0F);
@@ -50,12 +52,12 @@ public class FresnoModel<T extends FresnoEntity> extends AgeableModel<T> {
 
     @Override
     protected Iterable<ModelRenderer> headParts() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     protected Iterable<ModelRenderer> bodyParts() {
-        return null;
+        return ImmutableList.of(creature);
     }
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

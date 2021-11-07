@@ -1,4 +1,4 @@
-package com.hugomage.doyoubelieve.registerys;
+package com.hugomage.doyoubelieve.registries;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.entities.BigfootEntity;
@@ -12,22 +12,22 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ModEntityTypes {
-    public static DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, DoYouBelieve.MOD_ID);
+public class EntityRegistry {
+    public static DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, DoYouBelieve.MOD_ID);
 
-    public static final RegistryObject<EntityType<BigfootEntity>> BIGFOOT = ENTITY_TYPES.register("bigfoot", ()->
+    public static final RegistryObject<EntityType<BigfootEntity>> BIGFOOT = ENTITIES.register("bigfoot", ()->
             EntityType.Builder.of(BigfootEntity::new, EntityClassification.CREATURE)
                     .sized(1.0f,3.3f)
                     .build(new ResourceLocation(DoYouBelieve.MOD_ID, "bigfoot").toString()));
-    public static final RegistryObject<EntityType<JerseyDevilEntity>> JERSEY_DEVIL = ENTITY_TYPES.register("jersey_devil", ()->
+    public static final RegistryObject<EntityType<JerseyDevilEntity>> JERSEY_DEVIL = ENTITIES.register("jersey_devil", ()->
             EntityType.Builder.of(JerseyDevilEntity::new, EntityClassification.MONSTER)
                     .sized(1.0f,3.3f)
                     .build(new ResourceLocation(DoYouBelieve.MOD_ID, "jersey_devil").toString()));
-    public static final RegistryObject<EntityType<FresnoEntity>> FRESNO = ENTITY_TYPES.register("fresno_nightcrawler", ()->
+    public static final RegistryObject<EntityType<FresnoEntity>> FRESNO = ENTITIES.register("fresno_nightcrawler", ()->
             EntityType.Builder.of(FresnoEntity::new, EntityClassification.MONSTER)
                     .sized(1.0f,1.5f)
                     .build(new ResourceLocation(DoYouBelieve.MOD_ID, "fresno_nightcrawler").toString()));
-    public static final RegistryObject<EntityType<MothmanEntity>> MOTHMAN = ENTITY_TYPES.register("mothman", ()->
+    public static final RegistryObject<EntityType<MothmanEntity>> MOTHMAN = ENTITIES.register("mothman", ()->
             EntityType.Builder.of(MothmanEntity::new, EntityClassification.MONSTER)
                     .sized(1.2f,2.5f)
                     .build(new ResourceLocation(DoYouBelieve.MOD_ID, "mothman").toString()));

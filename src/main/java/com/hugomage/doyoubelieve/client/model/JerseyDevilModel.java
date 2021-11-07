@@ -1,11 +1,14 @@
 package com.hugomage.doyoubelieve.client.model;
 
+import com.google.common.collect.ImmutableList;
 import com.hugomage.doyoubelieve.entities.JerseyDevilEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.Collections;
 
 public class JerseyDevilModel<T extends JerseyDevilEntity> extends AgeableModel<T> {
     private final ModelRenderer body;
@@ -97,12 +100,12 @@ public class JerseyDevilModel<T extends JerseyDevilEntity> extends AgeableModel<
 
     @Override
     protected Iterable<ModelRenderer> headParts() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     protected Iterable<ModelRenderer> bodyParts() {
-        return null;
+        return ImmutableList.of(body);
     }
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

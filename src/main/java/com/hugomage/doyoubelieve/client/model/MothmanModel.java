@@ -1,11 +1,14 @@
 package com.hugomage.doyoubelieve.client.model;
 
+import com.google.common.collect.ImmutableList;
 import com.hugomage.doyoubelieve.entities.MothmanEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.Collections;
 
 public class MothmanModel<T extends MothmanEntity> extends AgeableModel<T> {
     private final ModelRenderer mothman;
@@ -77,12 +80,12 @@ public class MothmanModel<T extends MothmanEntity> extends AgeableModel<T> {
 
     @Override
     protected Iterable<ModelRenderer> headParts() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     protected Iterable<ModelRenderer> bodyParts() {
-        return null;
+        return ImmutableList.of(mothman);
     }
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

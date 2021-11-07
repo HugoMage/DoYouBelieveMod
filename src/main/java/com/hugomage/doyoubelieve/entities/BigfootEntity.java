@@ -1,7 +1,6 @@
 package com.hugomage.doyoubelieve.entities;
 
-import com.hugomage.doyoubelieve.registerys.ItemsRegistry;
-import com.hugomage.doyoubelieve.registerys.ModSoundEventTypes;
+import com.hugomage.doyoubelieve.registries.sgkfdgj;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -11,17 +10,13 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.HoglinTasks;
 import net.minecraft.entity.monster.IFlinging;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.OcelotEntity;
-import net.minecraft.entity.passive.PandaEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -30,9 +25,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -42,7 +35,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Predicate;
 
 public class BigfootEntity extends AnimalEntity {
@@ -75,7 +67,7 @@ public class BigfootEntity extends AnimalEntity {
         } else {
             this.attackAnimationRemainingTicks = 10;
             this.level.broadcastEntityEvent(this, (byte)4);
-            this.playSound(ModSoundEventTypes.BIGFOOT_ATTACK.get(), 1.0F, this.getVoicePitch());
+            this.playSound(sgkfdgj.BIGFOOT_ATTACK.get(), 1.0F, this.getVoicePitch());
             return IFlinging.hurtAndThrowTarget(this, (LivingEntity)p_70652_1_);
         }
     }
@@ -161,7 +153,7 @@ public class BigfootEntity extends AnimalEntity {
     public void handleEntityEvent(byte p_70103_1_) {
         if (p_70103_1_ == 4) {
             this.attackAnimationRemainingTicks = 10;
-            this.playSound(ModSoundEventTypes.BIGFOOT_ATTACK.get(), 0.5F, this.getVoicePitch());
+            this.playSound(sgkfdgj.BIGFOOT_ATTACK.get(), 0.5F, this.getVoicePitch());
         } else {
             super.handleEntityEvent(p_70103_1_);
         }
@@ -272,16 +264,16 @@ public class BigfootEntity extends AnimalEntity {
     @Override
     protected SoundEvent getAmbientSound ()
     {
-        return ModSoundEventTypes.BIGFOOT_AMBIENT.get();
+        return sgkfdgj.BIGFOOT_AMBIENT.get();
     }
     @Nullable
     protected SoundEvent getDeathSound() {
-        return ModSoundEventTypes.BIGFOOT_DEATH.get();
+        return sgkfdgj.BIGFOOT_DEATH.get();
     }
 
     @Nullable
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return ModSoundEventTypes.BIGFOOT_HURT.get();
+        return sgkfdgj.BIGFOOT_HURT.get();
     }
     public SoundEvent getEatingSound(ItemStack p_213353_1_) {
         return SoundEvents.PANDA_EAT;

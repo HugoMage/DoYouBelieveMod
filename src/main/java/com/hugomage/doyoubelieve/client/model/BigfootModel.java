@@ -1,5 +1,6 @@
 package com.hugomage.doyoubelieve.client.model;
 
+import com.google.common.collect.ImmutableList;
 import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -8,6 +9,8 @@ import net.minecraft.client.renderer.entity.model.IHasArm;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.Collections;
 
 public class BigfootModel<T extends BigfootEntity> extends AgeableModel<T>  implements IHasArm {
     private final ModelRenderer bb_main;
@@ -24,7 +27,6 @@ public class BigfootModel<T extends BigfootEntity> extends AgeableModel<T>  impl
 
         bb_main = new ModelRenderer(this);
         bb_main.setPos(0.0F, 24.0F, 0.0F);
-
 
         body = new ModelRenderer(this);
         body.setPos(0.0F, -35.25F, 2.5F);
@@ -85,14 +87,16 @@ public class BigfootModel<T extends BigfootEntity> extends AgeableModel<T>  impl
 
         }
     }
+
     @Override
     public void translateToHand(HandSide sideIn, MatrixStack matrixStackIn) {
         this.getArm(sideIn).translateAndRotate(matrixStackIn);
     }
-    public ModelRenderer getArm(HandSide p_1912161)
-    {
+
+    public ModelRenderer getArm(HandSide p_1912161) {
         return p_1912161 == HandSide.LEFT ? this.larm : this.rarm;
     }
+
     @Override
     public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         bb_main.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
@@ -100,17 +104,18 @@ public class BigfootModel<T extends BigfootEntity> extends AgeableModel<T>  impl
 
     @Override
     protected Iterable<ModelRenderer> headParts() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
     protected Iterable<ModelRenderer> bodyParts() {
-        return null;
+        return ImmutableList.of(bb_main);
     }
 
     public ModelRenderer getFlowerHoldingArm() {
         return this.larm;
     }
+
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
         modelRenderer.yRot = y;
