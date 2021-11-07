@@ -11,8 +11,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 
 public class MothmanRenderer extends MobRenderer<MothmanEntity, MothmanModel<MothmanEntity>> {
-
     protected static final ResourceLocation TEXTURE = new ResourceLocation(DoYouBelieve.MOD_ID, "textures/entity/mothman.png");
+
+    public MothmanRenderer(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new MothmanModel<>(), 0.8F);
+        this.addLayer(new MothmanEyeLayer<>(this));
+    }
+
     protected void setupRotations(MothmanEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
         super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
         if (!((double)entityLiving.animationSpeedOld < 0.01D)) {
@@ -23,10 +28,6 @@ public class MothmanRenderer extends MobRenderer<MothmanEntity, MothmanModel<Mot
         }
     }
 
-    public MothmanRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new MothmanModel(), 0.8F);
-        this.addLayer(new MothmanEyeLayer<>(this));
-    }
     @Override
     public ResourceLocation getTextureLocation(MothmanEntity entity) {
         return TEXTURE;

@@ -12,13 +12,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 
 public class JerseyDevilRenderer extends MobRenderer<JerseyDevilEntity, JerseyDevilModel<JerseyDevilEntity>> {
-
     protected static final ResourceLocation TEXTURE = new ResourceLocation(DoYouBelieve.MOD_ID, "textures/entity/jersey_devil.png");
 
-
     public JerseyDevilRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new JerseyDevilModel(), 0.8F);
+        super(renderManagerIn, new JerseyDevilModel<>(), 0.8F);
     }
+
     @Override
     public ResourceLocation getTextureLocation(JerseyDevilEntity entity) {
         return TEXTURE;

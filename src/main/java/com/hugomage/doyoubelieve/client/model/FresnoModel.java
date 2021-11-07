@@ -1,6 +1,5 @@
 package com.hugomage.doyoubelieve.client.model;
 
-import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.hugomage.doyoubelieve.entities.FresnoEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -58,7 +57,6 @@ public class FresnoModel<T extends FresnoEntity> extends AgeableModel<T> {
     protected Iterable<ModelRenderer> bodyParts() {
         return null;
     }
-
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
