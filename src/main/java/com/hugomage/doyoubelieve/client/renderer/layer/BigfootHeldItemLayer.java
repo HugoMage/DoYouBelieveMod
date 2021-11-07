@@ -1,4 +1,4 @@
-package com.hugomage.doyoubelieve.client.renderer;
+package com.hugomage.doyoubelieve.client.renderer.layer;
 
 import com.hugomage.doyoubelieve.client.model.BigfootModel;
 import com.hugomage.doyoubelieve.entities.BigfootEntity;

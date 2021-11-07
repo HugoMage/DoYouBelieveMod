@@ -1,6 +1,5 @@
 package com.hugomage.doyoubelieve.client.model;
 
-import com.hugomage.doyoubelieve.entities.JerseyDevilEntity;
 import com.hugomage.doyoubelieve.entities.MothmanEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -70,6 +69,7 @@ public class MothmanModel<T extends MothmanEntity> extends AgeableModel<T> {
         this.rleg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.lleg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
     }
+
     @Override
     public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         mothman.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
@@ -84,7 +84,6 @@ public class MothmanModel<T extends MothmanEntity> extends AgeableModel<T> {
     protected Iterable<ModelRenderer> bodyParts() {
         return null;
     }
-
 
     public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
