@@ -12,8 +12,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 
 public class FresnoRenderer extends MobRenderer<FresnoEntity, FresnoModel<FresnoEntity>> {
-
     protected static final ResourceLocation TEXTURE = new ResourceLocation(DoYouBelieve.MOD_ID, "textures/entity/fresno_nightcrawler.png");
+
+    public FresnoRenderer(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new FresnoModel(), 0.8F);
+    }
+
     protected void setupRotations(FresnoEntity entityLiving, MatrixStack matrixStackIn, float ageInTicks, float rotationYaw, float partialTicks) {
         super.setupRotations(entityLiving, matrixStackIn, ageInTicks, rotationYaw, partialTicks);
         if (!((double)entityLiving.animationSpeedOld < 0.01D)) {
@@ -24,9 +28,6 @@ public class FresnoRenderer extends MobRenderer<FresnoEntity, FresnoModel<Fresno
         }
     }
 
-    public FresnoRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new FresnoModel(), 0.8F);
-    }
     @Override
     public ResourceLocation getTextureLocation(FresnoEntity entity) {
         return TEXTURE;
