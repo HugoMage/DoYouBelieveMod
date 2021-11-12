@@ -5,10 +5,10 @@ import com.hugomage.doyoubelieve.entities.BigfootEntity;
 import com.hugomage.doyoubelieve.entities.FresnoEntity;
 import com.hugomage.doyoubelieve.entities.JerseyDevilEntity;
 import com.hugomage.doyoubelieve.entities.MothmanEntity;
-import com.hugomage.doyoubelieve.registries.BlockRegistry;
-import com.hugomage.doyoubelieve.registries.ItemRegistry;
-import com.hugomage.doyoubelieve.registries.EntityRegistry;
-import com.hugomage.doyoubelieve.registries.SoundRegistry;
+import com.hugomage.doyoubelieve.registry.DYBBlocks;
+import com.hugomage.doyoubelieve.registry.DYBItems;
+import com.hugomage.doyoubelieve.registry.DYBEntities;
+import com.hugomage.doyoubelieve.registry.DYBSounds;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -25,20 +25,20 @@ public class DoYouBelieve {
     public DoYouBelieve() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ItemRegistry.ITEMS.register(bus);
-        BlockRegistry.BLOCKS.register(bus);
-        EntityRegistry.ENTITIES.register(bus);
-        SoundRegistry.SOUNDS.register(bus);
+        DYBItems.ITEMS.register(bus);
+        DYBBlocks.BLOCKS.register(bus);
+        DYBEntities.ENTITIES.register(bus);
+        DYBSounds.SOUNDS.register(bus);
 
         bus.addListener(this::createEntityAttributes);
         bus.addListener(this::registerClient);
     }
 
     private void createEntityAttributes(EntityAttributeCreationEvent event) {
-        event.put(EntityRegistry.BIGFOOT.get(), BigfootEntity.setCustomAttributes().build());
-        event.put(EntityRegistry.JERSEY_DEVIL.get(), JerseyDevilEntity.setCustomAttributes().build());
-        event.put(EntityRegistry.FRESNO.get(), FresnoEntity.setCustomAttributes().build());
-        event.put(EntityRegistry.MOTHMAN.get(), MothmanEntity.setCustomAttributes().build());
+        event.put(DYBEntities.BIGFOOT.get(), BigfootEntity.setCustomAttributes().build());
+        event.put(DYBEntities.JERSEY_DEVIL.get(), JerseyDevilEntity.setCustomAttributes().build());
+        event.put(DYBEntities.FRESNO.get(), FresnoEntity.setCustomAttributes().build());
+        event.put(DYBEntities.MOTHMAN.get(), MothmanEntity.setCustomAttributes().build());
     }
 
     private void registerClient(FMLClientSetupEvent event) {

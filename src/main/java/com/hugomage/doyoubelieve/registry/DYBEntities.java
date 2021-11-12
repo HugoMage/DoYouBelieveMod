@@ -1,4 +1,4 @@
-package com.hugomage.doyoubelieve.registries;
+package com.hugomage.doyoubelieve.registry;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.entities.BigfootEntity;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class EntityRegistry {
+public class DYBEntities {
     public static DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, DoYouBelieve.MOD_ID);
 
     public static final RegistryObject<EntityType<BigfootEntity>> BIGFOOT = ENTITIES.register("bigfoot", ()->

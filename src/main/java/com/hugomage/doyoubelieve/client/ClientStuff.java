@@ -5,10 +5,9 @@ import com.hugomage.doyoubelieve.client.renderer.BigfootRenderer;
 import com.hugomage.doyoubelieve.client.renderer.FresnoRenderer;
 import com.hugomage.doyoubelieve.client.renderer.JerseyDevilRenderer;
 import com.hugomage.doyoubelieve.client.renderer.MothmanRenderer;
-import com.hugomage.doyoubelieve.item.ModSpawnEggItem;
-import com.hugomage.doyoubelieve.registries.BlockRegistry;
-import com.hugomage.doyoubelieve.registries.ItemRegistry;
-import com.hugomage.doyoubelieve.registries.EntityRegistry;
+import com.hugomage.doyoubelieve.item.DYBSpawnEggItem;
+import com.hugomage.doyoubelieve.registry.DYBBlocks;
+import com.hugomage.doyoubelieve.registry.DYBEntities;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -24,19 +23,19 @@ import net.minecraftforge.fml.common.Mod;
 public class ClientStuff {
 
     public static void init() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.BIGFOOT.get(), BigfootRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.JERSEY_DEVIL.get(), JerseyDevilRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.FRESNO.get(), FresnoRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityRegistry.MOTHMAN.get(), MothmanRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DYBEntities.BIGFOOT.get(), BigfootRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DYBEntities.JERSEY_DEVIL.get(), JerseyDevilRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DYBEntities.FRESNO.get(), FresnoRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DYBEntities.MOTHMAN.get(), MothmanRenderer::new);
 
-        RenderTypeLookup.setRenderLayer(BlockRegistry.BIGFOOT_TRACKS.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(DYBBlocks.BIGFOOT_TRACKS.get(), RenderType.translucent());
     }
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public static void itemColors(ColorHandlerEvent.Item event) {
         ItemColors handler = event.getItemColors();
-        IItemColor eggColor = (stack, tintIndex) -> ((ModSpawnEggItem) stack.getItem()).getColor(tintIndex);
-        for (ModSpawnEggItem e : ModSpawnEggItem.UNADDED_EGGS) handler.register(eggColor, e);
+        IItemColor eggColor = (stack, tintIndex) -> ((DYBSpawnEggItem) stack.getItem()).getColor(tintIndex);
+        for (DYBSpawnEggItem e : DYBSpawnEggItem.UNADDED_EGGS) handler.register(eggColor, e);
     }
 }

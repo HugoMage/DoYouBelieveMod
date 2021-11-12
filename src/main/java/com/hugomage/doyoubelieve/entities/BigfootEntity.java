@@ -1,6 +1,6 @@
 package com.hugomage.doyoubelieve.entities;
 
-import com.hugomage.doyoubelieve.registries.SoundRegistry;
+import com.hugomage.doyoubelieve.registry.DYBSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -81,7 +81,7 @@ public class BigfootEntity extends AnimalEntity {
         } else {
             this.attackAnimationRemainingTicks = 10;
             this.level.broadcastEntityEvent(this, (byte)4);
-            this.playSound(SoundRegistry.BIGFOOT_ATTACK.get(), 1.0F, this.getVoicePitch());
+            this.playSound(DYBSounds.BIGFOOT_ATTACK.get(), 1.0F, this.getVoicePitch());
             return IFlinging.hurtAndThrowTarget(this, (LivingEntity)p_70652_1_);
         }
     }
@@ -172,7 +172,7 @@ public class BigfootEntity extends AnimalEntity {
     public void handleEntityEvent(byte p_70103_1_) {
         if (p_70103_1_ == 4) {
             this.attackAnimationRemainingTicks = 10;
-            this.playSound(SoundRegistry.BIGFOOT_ATTACK.get(), 0.5F, this.getVoicePitch());
+            this.playSound(DYBSounds.BIGFOOT_ATTACK.get(), 0.5F, this.getVoicePitch());
         } else {
             super.handleEntityEvent(p_70103_1_);
         }
@@ -206,17 +206,17 @@ public class BigfootEntity extends AnimalEntity {
     @Override
     protected SoundEvent getAmbientSound ()
     {
-        return SoundRegistry.BIGFOOT_AMBIENT.get();
+        return DYBSounds.BIGFOOT_AMBIENT.get();
     }
 
     @Nullable
     protected SoundEvent getDeathSound() {
-        return SoundRegistry.BIGFOOT_DEATH.get();
+        return DYBSounds.BIGFOOT_DEATH.get();
     }
 
     @Nullable
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return SoundRegistry.BIGFOOT_HURT.get();
+        return DYBSounds.BIGFOOT_HURT.get();
     }
 
     public SoundEvent getEatingSound(ItemStack p_213353_1_) {

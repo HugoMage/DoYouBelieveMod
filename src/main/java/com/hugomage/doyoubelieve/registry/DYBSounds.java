@@ -1,4 +1,4 @@
-package com.hugomage.doyoubelieve.registries;
+package com.hugomage.doyoubelieve.registry;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
 import net.minecraft.util.ResourceLocation;
@@ -7,7 +7,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class SoundRegistry {
+public class DYBSounds {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, DoYouBelieve.MOD_ID);
 
     public static final RegistryObject<SoundEvent> BIGFOOT_AMBIENT = SOUNDS.register("entity.bigfoot.ambient",
