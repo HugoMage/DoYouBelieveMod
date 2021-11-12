@@ -20,24 +20,29 @@ import net.minecraft.item.Items;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ItemParticleData;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class BigfootEntity extends AnimalEntity {
+public class BigfootEntity extends AnimalEntity implements IAnimatable {
+    private final AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> EAT_COUNTER = EntityDataManager.defineId(BigfootEntity.class, DataSerializers.INT);
     private static final Predicate<ItemEntity> TEMPTATION_ITEMS = (p_213575_0_) -> {
         Item item = p_213575_0_.getItem().getItem();
@@ -50,6 +55,19 @@ public class BigfootEntity extends AnimalEntity {
         super(type, worldIn);
         this.setCanPickUpLoot(true);
         this.setPathfindingMalus(PathNodeType.DANGER_OTHER, 0.0F);
+    }
+
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if(event.isMoving()){
+            event.getController().setAnimation(new AnimationBuilder()
+                    .addAnimation("animation.BigFoot.walk", true));
+            return PlayState.CONTINUE;
+        }
+        else {
+            event.getController().setAnimation(new AnimationBuilder()
+                    .addAnimation("animation.basalt_capsling.idle", true));
+            return PlayState.CONTINUE;
+        }
     }
 
     @Override
@@ -86,75 +104,11 @@ public class BigfootEntity extends AnimalEntity {
         }
     }
 
-    public boolean isBerry(ItemStack p_70877_1_) {
-        return p_70877_1_.getItem() == Blocks.BAMBOO.asItem();
-    }
-
-    // TODO - delete? it's unused.
-    private void handleEating() {
-        if (!this.isEating() &&  !this.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty() && this.random.nextInt(80) == 1) {
-            this.eat(true);
-        } else if (this.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty()) {
-            this.eat(false);
-        }
-
-        if (this.isEating()) {
-            this.addEatingParticles();
-            if (!this.level.isClientSide && this.getEatCounter() > 80 && this.random.nextInt(20) == 1) {
-                if (this.getEatCounter() > 100 && this.isBerry(this.getItemBySlot(EquipmentSlotType.MAINHAND))) {
-                    if (!this.level.isClientSide) {
-                        this.setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
-                    }
-
-                }
-
-                this.eat(false);
-                return;
-            }
-
-            this.setEatCounter(this.getEatCounter() + 1);
-        }
-
-    }
-
-    private void addEatingParticles() {
-        if (this.getEatCounter() % 5 == 0) {
-            this.playSound(SoundEvents.PANDA_EAT, 0.5F + 0.5F * (float)this.random.nextInt(2), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-
-            for(int i = 0; i < 6; ++i) {
-                Vector3d vector3d = new Vector3d(((double)this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, ((double)this.random.nextFloat() - 0.5D) * 0.1D);
-                vector3d = vector3d.xRot(-this.xRot * ((float)Math.PI / 180F));
-                vector3d = vector3d.yRot(-this.yRot * ((float)Math.PI / 180F));
-                double d0 = (double)(-this.random.nextFloat()) * 0.6D - 0.3D;
-                Vector3d vector3d1 = new Vector3d(((double)this.random.nextFloat() - 0.5D) * 0.8D, d0, 1.0D + ((double)this.random.nextFloat() - 0.5D) * 0.4D);
-                vector3d1 = vector3d1.yRot(-this.yBodyRot * ((float)Math.PI / 180F));
-                vector3d1 = vector3d1.add(this.getX(), this.getEyeY() + 1.0D, this.getZ());
-                this.level.addParticle(new ItemParticleData(ParticleTypes.ITEM, this.getItemBySlot(EquipmentSlotType.MAINHAND)), vector3d1.x, vector3d1.y, vector3d1.z, vector3d.x, vector3d.y + 0.05D, vector3d.z);
-            }
-        }
-    }
-
-    private boolean canEat(ItemStack p_213464_1_) {
-        return p_213464_1_.getItem().isEdible() && this.getTarget() == null && this.onGround;
-    }
 
     public void aiStep() {
         if (!this.level.isClientSide && this.isAlive() && this.isEffectiveAi()) {
             ++this.ticksSinceEaten;
             ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.MAINHAND);
-            if (this.canEat(itemstack)) {
-                if (this.ticksSinceEaten > 600) {
-                    ItemStack itemstack1 = itemstack.finishUsingItem(this.level, this);
-                    if (!itemstack1.isEmpty()) {
-                        this.setItemSlot(EquipmentSlotType.MAINHAND, itemstack1);
-                    }
-
-                    this.ticksSinceEaten = 0;
-                } else if (this.ticksSinceEaten > 560 && this.random.nextFloat() < 0.1F) {
-                    this.playSound(this.getEatingSound(itemstack), 1.0F, 1.0F);
-                    this.level.broadcastEntityEvent(this, (byte)45);
-                }
-            }
         }
         if (this.attackAnimationRemainingTicks > 0) {
             --this.attackAnimationRemainingTicks;
@@ -177,15 +131,6 @@ public class BigfootEntity extends AnimalEntity {
             super.handleEntityEvent(p_70103_1_);
         }
 
-    }
-
-    public int getEatAnimation() {
-        return this.ticksSinceEaten;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public int getAttackAnimationRemainingTicks() {
-        return this.attackAnimationRemainingTicks;
     }
 
     protected int getExperienceReward(PlayerEntity p_70693_1_) {
@@ -219,9 +164,6 @@ public class BigfootEntity extends AnimalEntity {
         return DYBSounds.BIGFOOT_HURT.get();
     }
 
-    public SoundEvent getEatingSound(ItemStack p_213353_1_) {
-        return SoundEvents.PANDA_EAT;
-    }
 
     @Override
     protected void playStepSound( BlockPos pos, BlockState blockIn ) {
@@ -234,20 +176,15 @@ public class BigfootEntity extends AnimalEntity {
         return !this.isSleeping();
     }
 
-    public boolean isEating() {
-        return this.entityData.get(EAT_COUNTER) > 0;
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController<BigfootEntity>(this, "controller", 0, this::predicate));
     }
 
-    public void eat(boolean p_213534_1_) {
-        this.entityData.set(EAT_COUNTER, p_213534_1_ ? 1 : 0);
-    }
-
-    private int getEatCounter() {
-        return this.entityData.get(EAT_COUNTER);
-    }
-
-    private void setEatCounter(int p_213571_1_) {
-        this.entityData.set(EAT_COUNTER, p_213571_1_);
+    @Override
+    public AnimationFactory getFactory() {
+        return null;
     }
 
     class FindItemsGoal extends Goal {

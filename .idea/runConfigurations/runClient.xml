@@ -12,7 +12,7 @@
       <env name="MCP_VERSION" value="20210115.111550"/>
       <env name="FORGE_VERSION" value="36.2.2"/>
       <env name="assetIndex" value="1.16"/>
-      <env name="assetDirectory" value="C:\Users\codyk\.gradle\caches\forge_gradle\assets"/>
+      <env name="assetDirectory" value="C:\Users\blopf\.gradle\caches\forge_gradle\assets"/>
       <env name="nativesDirectory" value="$PROJECT_DIR$\build\natives"/>
       <env name="FORGE_GROUP" value="net.minecraftforge"/>
       <env name="target" value="fmluserdevclient"/>

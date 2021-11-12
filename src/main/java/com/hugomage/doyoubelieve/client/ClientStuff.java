@@ -18,18 +18,19 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = DoYouBelieve.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientStuff {
 
     public static void init() {
-        RenderingRegistry.registerEntityRenderingHandler(DYBEntities.BIGFOOT.get(), BigfootRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(DYBEntities.JERSEY_DEVIL.get(), JerseyDevilRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(DYBEntities.FRESNO.get(), FresnoRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(DYBEntities.MOTHMAN.get(), MothmanRenderer::new);
 
         RenderTypeLookup.setRenderLayer(DYBBlocks.BIGFOOT_TRACKS.get(), RenderType.translucent());
     }
+
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
