@@ -114,14 +114,23 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    maven {
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+    }
+    maven {
+        url "https://maven.jaackson.me"
+    }
+    maven {
+        url "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        url "https://modmaven.k-4u.nl"
+    }
 }
 
 dependencies {
-
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.2'
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.52')
-
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
