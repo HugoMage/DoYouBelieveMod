@@ -44,13 +44,14 @@ import java.util.function.Predicate;
 public class BigfootEntity extends AnimalEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final DataParameter<Integer> EAT_COUNTER = EntityDataManager.defineId(BigfootEntity.class, DataSerializers.INT);
+    private static final DataParameter<Boolean> ROARING = EntityDataManager.defineId(BigfootEntity.class, DataSerializers.BOOLEAN);
     private static final Predicate<ItemEntity> TEMPTATION_ITEMS = (p_213575_0_) -> {
         Item item = p_213575_0_.getItem().getItem();
         return (item == Blocks.SWEET_BERRY_BUSH.asItem()) && p_213575_0_.isAlive() && !p_213575_0_.hasPickUpDelay();
     };
     private int attackAnimationRemainingTicks;
     private int ticksSinceEaten;
-
+    private int ticksSinceRoar;
     public BigfootEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
         super(type, worldIn);
         this.setCanPickUpLoot(true);
@@ -58,6 +59,11 @@ public class BigfootEntity extends AnimalEntity implements IAnimatable {
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if(this.getRoaring()){
+            event.getController().setAnimation(new AnimationBuilder()
+                    .addAnimation("animation.BigFoot.roar", false));
+            return PlayState.CONTINUE;
+        }
         if(event.isMoving()){
             event.getController().setAnimation(new AnimationBuilder()
                     .addAnimation("animation.BigFoot.walk", true));
@@ -65,7 +71,7 @@ public class BigfootEntity extends AnimalEntity implements IAnimatable {
         }
         else {
             event.getController().setAnimation(new AnimationBuilder()
-                    .addAnimation("animation.basalt_capsling.idle", true));
+                    .addAnimation("animation.BigFoot.idle", true));
             return PlayState.CONTINUE;
         }
     }
@@ -87,7 +93,7 @@ public class BigfootEntity extends AnimalEntity implements IAnimatable {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return MobEntity.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 80.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.30D)
+                .add(Attributes.MOVEMENT_SPEED, 0.26D)
                 .add(Attributes.ATTACK_DAMAGE, 10D)
                 .add(Attributes.ATTACK_SPEED, 6D)
                 .add(Attributes.ATTACK_KNOCKBACK, 1D);
@@ -120,6 +126,7 @@ public class BigfootEntity extends AnimalEntity implements IAnimatable {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(EAT_COUNTER, 0);
+        this.entityData.define(ROARING, false);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -164,6 +171,13 @@ public class BigfootEntity extends AnimalEntity implements IAnimatable {
         return DYBSounds.BIGFOOT_HURT.get();
     }
 
+    public boolean getRoaring(){
+        return this.entityData.get(ROARING);
+    }
+
+    public void setRoaring(boolean roaring){
+        this.entityData.set(ROARING, true);
+    }
 
     @Override
     protected void playStepSound( BlockPos pos, BlockState blockIn ) {
@@ -179,12 +193,12 @@ public class BigfootEntity extends AnimalEntity implements IAnimatable {
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<BigfootEntity>(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<BigfootEntity>(this, "controller", 8, this::predicate));
     }
 
     @Override
     public AnimationFactory getFactory() {
-        return null;
+        return this.factory;
     }
 
     class FindItemsGoal extends Goal {

@@ -1,10 +1,7 @@
 package com.hugomage.doyoubelieve.registry;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
-import com.hugomage.doyoubelieve.entities.BigfootEntity;
-import com.hugomage.doyoubelieve.entities.FresnoEntity;
-import com.hugomage.doyoubelieve.entities.JerseyDevilEntity;
-import com.hugomage.doyoubelieve.entities.MothmanEntity;
+import com.hugomage.doyoubelieve.entities.*;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
@@ -31,6 +28,18 @@ public class DYBEntities {
             EntityType.Builder.of(MothmanEntity::new, EntityClassification.MONSTER)
                     .sized(1.2f,2.5f)
                     .build(new ResourceLocation(DoYouBelieve.MOD_ID, "mothman").toString()));
+    public static final RegistryObject<EntityType<MartianEntity>> MARTIAN = ENTITIES.register("martian", ()->
+            EntityType.Builder.of(MartianEntity::new, EntityClassification.CREATURE)
+                    .sized(0.7f,1.7f)
+                    .build(new ResourceLocation(DoYouBelieve.MOD_ID, "martian").toString()));
+    public static final RegistryObject<EntityType<RayGunLaserEntity>> RAYGUNLASER =
+            ENTITIES.register("raygun_laser",
+                    ()->EntityType.Builder.<RayGunLaserEntity>of(RayGunLaserEntity::new, EntityClassification.MISC)
+                            .sized(0.25F,0.25F)
+                            .clientTrackingRange(4)
+                            .updateInterval(20)
+                            .fireImmune()
+                            .build("raygun_laser"));
 
 
 }

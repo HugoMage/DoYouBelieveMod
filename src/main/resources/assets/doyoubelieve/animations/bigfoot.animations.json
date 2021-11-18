@@ -27,7 +27,7 @@
 				},
 				"leftLeg": {
 					"rotation": {
-						"vector": [0, 2.5, 2.5]
+						"vector": [0, 0, 0]
 					}
 				},
 				"chest": {
@@ -42,12 +42,12 @@
 				},
 				"rightLeg": {
 					"rotation": {
-						"vector": [0, -2.5, -2.5]
+						"vector": [0, 0, 0]
 					}
 				},
 				"leftFoot": {
 					"rotation": {
-						"vector": [0, 0, -2.5]
+						"vector": [0, 0, 0]
 					}
 				}
 			}
@@ -93,12 +93,12 @@
 				},
 				"rightArm": {
 					"rotation": {
-						"vector": [-20, 0, "NaN-(Math.sin((query.anim_time - 0.2) * 180) * -3)"]
+						"vector": ["-20 + Math.cos((query.anim_time + 0.0) * 180) * -12", 0, "Math.sin((query.anim_time - 0.2) * 180) * -3"]
 					}
 				},
 				"leftArm": {
 					"rotation": {
-						"vector": [-20, 0, "-(Math.sin((query.anim_time - 0.2) * 180) * -3)"]
+						"vector": ["-20 + Math.cos((query.anim_time + 0.0) * 180) * 12", 0, "-(Math.sin((query.anim_time - 0.2) * 180) * -3)"]
 					}
 				},
 				"leftLeg": {
@@ -110,7 +110,8 @@
 							"vector": [15, 7.5, 0]
 						},
 						"2.0": {
-							"vector": [-17.5, 5, 0]
+							"vector": [-17.5, 5, 0],
+							"easing": "easeInOutSine"
 						}
 					},
 					"position": {
@@ -126,12 +127,12 @@
 						"1.5": {
 							"vector": [0, 5, 0]
 						},
-						"1.8333": {
+						"1.75": {
 							"vector": [0, 3, 0]
 						},
 						"2.0": {
 							"vector": [0, 0, 0],
-							"easing": "easeOutSine"
+							"easing": "easeInOutSine"
 						}
 					}
 				},
@@ -170,7 +171,7 @@
 						},
 						"2.0": {
 							"vector": [17.5, 0, 0],
-							"easing": "easeInSine"
+							"easing": "easeInOutSine"
 						}
 					}
 				},
@@ -184,7 +185,7 @@
 						},
 						"1.0": {
 							"vector": [-17.5, -5, 0],
-							"easing": "easeOutSine"
+							"easing": "easeInOutSine"
 						},
 						"2.0": {
 							"vector": [15, -7.5, 0]
@@ -197,12 +198,12 @@
 						"0.5": {
 							"vector": [0, 5, 0]
 						},
-						"0.8333": {
+						"0.75": {
 							"vector": [0, 3, 0]
 						},
 						"1.0": {
 							"vector": [0, 0, 0],
-							"easing": "easeOutSine"
+							"easing": "easeInOutSine"
 						},
 						"1.5": {
 							"vector": [0, 0, 0]
@@ -225,7 +226,7 @@
 						},
 						"1.0": {
 							"vector": [17.5, 0, 0],
-							"easing": "easeInSine"
+							"easing": "easeInOutSine"
 						},
 						"1.5": {
 							"vector": [0, 0, 0]

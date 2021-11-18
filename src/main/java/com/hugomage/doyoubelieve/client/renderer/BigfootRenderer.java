@@ -31,6 +31,7 @@ public class BigfootRenderer extends GeoEntityRenderer<BigfootEntity> {
         this.entity = entity;
     }
 
+
     @Override
     public void renderRecursively(GeoBone bone, MatrixStack stack, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         if (bone.getName().equals("Item")) {
