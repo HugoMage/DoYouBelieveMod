@@ -34,3 +34,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
     versionRange="[1.16.5,1.17)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.doyoubelieve]]
+modId = "blueprint"
+mandatory = true
+versionRange = "[1.16.5-3.3.0,)"
+ordering = "BEFORE"
+side = "BOTH"
