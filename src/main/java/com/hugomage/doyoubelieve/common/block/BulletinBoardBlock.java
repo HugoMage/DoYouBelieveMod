@@ -1,4 +1,4 @@
-package com.hugomage.doyoubelieve.block;
+package com.hugomage.doyoubelieve.common.block;
 
 import net.minecraft.block.Block;
 

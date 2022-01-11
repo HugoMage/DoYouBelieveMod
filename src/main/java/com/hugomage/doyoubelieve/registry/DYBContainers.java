@@ -1,7 +1,7 @@
 package com.hugomage.doyoubelieve.registry;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
-import com.hugomage.doyoubelieve.containers.BulletinBoardContainer;
+import com.hugomage.doyoubelieve.common.containers.BulletinBoardContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fml.RegistryObject;

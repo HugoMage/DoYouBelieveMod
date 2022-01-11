@@ -1,7 +1,7 @@
 package com.hugomage.doyoubelieve.client.model;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
-import com.hugomage.doyoubelieve.entities.BigfootEntity;
+import com.hugomage.doyoubelieve.common.entities.BigfootEntity;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 

@@ -1,10 +1,9 @@
 package com.hugomage.doyoubelieve.client.renderer;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
-import com.hugomage.doyoubelieve.client.model.BigfootModel;
 import com.hugomage.doyoubelieve.client.model.FresnoModel;
-import com.hugomage.doyoubelieve.entities.BigfootEntity;
-import com.hugomage.doyoubelieve.entities.FresnoEntity;
+import com.hugomage.doyoubelieve.common.entities.BigfootEntity;
+import com.hugomage.doyoubelieve.common.entities.FresnoEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

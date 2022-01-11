@@ -2,15 +2,13 @@ package com.hugomage.doyoubelieve.registry;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.client.renderer.RayGunRenderer;
-import com.hugomage.doyoubelieve.item.DYBSpawnEggItem;
+import com.hugomage.doyoubelieve.common.item.DYBSpawnEggItem;
 
-import com.hugomage.doyoubelieve.item.RayGunItem;
+import com.hugomage.doyoubelieve.common.item.RayGunItem;
 import net.minecraft.item.*;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import software.bernie.example.client.renderer.item.JackInTheBoxRenderer;
-import software.bernie.example.item.JackInTheBoxItem;
 
 public class DYBItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DoYouBelieve.MOD_ID);

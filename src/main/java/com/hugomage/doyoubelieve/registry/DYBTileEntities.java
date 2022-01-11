@@ -1,7 +1,7 @@
 package com.hugomage.doyoubelieve.registry;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
-import com.hugomage.doyoubelieve.tileentities.BulletinBoardTileEntity;
+import com.hugomage.doyoubelieve.common.tileentities.BulletinBoardTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

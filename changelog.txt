@@ -880,7 +880,7 @@ Build: 1.16.4-35.1.5 - Fri Nov 27 23:57:23 GMT 2020
 		Implement feature for mods to define new world types (#7448)
 		
 		* Mods can now register world types via a new forge registry, and optionally register a settings screen to tweak them.
-		  * The default world type for dedicated servers and singleplayer world creation is configurable via forge's common config.
+		  * The default world type for dedicated servers and singleplayer world creation is configurable via forge's com.hugomage.doyoubelieve.common config.
 
 =========
 Build: 1.16.4-35.1.4 - Tue Nov 24 17:14:21 GMT 2020
@@ -1597,7 +1597,7 @@ Build: 1.16.2-33.0.34 - Thu Sep 03 03:38:16 GMT 2020
 	tterrag:
 		Add validation via resources for tag providers (#7271)
 		
-		BREAKING CHANGE: Moved ExistingFileHelper to common package
+		BREAKING CHANGE: Moved ExistingFileHelper to com.hugomage.doyoubelieve.common package
 		Remove various workarounds from forge tag providers
 
 =========
@@ -2002,7 +2002,7 @@ Build: 1.16.1-32.0.67 - Wed Jul 15 19:30:53 GMT 2020
 =========
 Build: 1.16.1-32.0.66 - Tue Jul 14 00:15:41 GMT 2020
 	darklime:
-		Make all functions in Style common. (#6931)
+		Make all functions in Style com.hugomage.doyoubelieve.common. (#6931)
 
 =========
 Build: 1.16.1-32.0.65 - Mon Jul 13 22:44:53 GMT 2020

@@ -1,4 +1,4 @@
-package com.hugomage.doyoubelieve.item;
+package com.hugomage.doyoubelieve.common.item;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.SpawnEggItem;

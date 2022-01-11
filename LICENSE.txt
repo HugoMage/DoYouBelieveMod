@@ -39,11 +39,11 @@ I grant permission for some parts of FML to be redistributed outside the terms o
 the minecraft modding community. All contributions to these parts should be licensed under the same additional grant.
 
 -- Runtime patcher --
-License is granted to redistribute the runtime patcher code (src/main/java/net/minecraftforge/fml/common/patcher
+License is granted to redistribute the runtime patcher code (src/main/java/net/minecraftforge/fml/com.hugomage.doyoubelieve.common/patcher
 and subdirectories) under any alternative open source license as classified by the OSI (http://opensource.org/licenses)
 
 -- ASM transformers --
-License is granted to redistribute the ASM transformer code (src/main/java/net/minecraftforge/common/asm/ and subdirectories)
+License is granted to redistribute the ASM transformer code (src/main/java/net/minecraftforge/com.hugomage.doyoubelieve.common/asm/ and subdirectories)
 under any alternative open source license as classified by the OSI (http://opensource.org/licenses)
 
 =========================================================================

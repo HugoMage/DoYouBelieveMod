@@ -1,7 +1,7 @@
 package com.hugomage.doyoubelieve.client.model;
 
 import com.google.common.collect.ImmutableList;
-import com.hugomage.doyoubelieve.entities.JerseyDevilEntity;
+import com.hugomage.doyoubelieve.common.entities.JerseyDevilEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.AgeableModel;

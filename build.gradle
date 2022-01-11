@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -48,6 +48,7 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
+            property "mixin.env.disableRefMap", "true"
 
             // Recommended logging level for the console
             // You can set various levels here.
@@ -70,6 +71,7 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
+            property "mixin.env.disableRefMap", "true"
 
             // Recommended logging level for the console
             // You can set various levels here.
@@ -92,6 +94,7 @@ minecraft {
             // "REGISTRIES": For firing of registry events.
             // "REGISTRYDUMP": For getting the contents of all registries.
             property 'forge.logging.markers', 'REGISTRIES'
+            property "mixin.env.disableRefMap", "true"
 
             // Recommended logging level for the console
             // You can set various levels here.
@@ -118,19 +121,25 @@ repositories {
         url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
     }
     maven {
-        url "https://maven.jaackson.me"
+        url = "https://maven.jaackson.me"
     }
     maven {
-        url "https://dvs1.progwml6.com/files/maven/"
+        url = "https://dvs1.progwml6.com/files/maven/"
     }
     maven {
-        url "https://modmaven.k-4u.nl"
+        url = "https://www.cursemaven.com"
+    }
+    maven {
+        url = "https://modmaven.k-4u.nl"
     }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.2'
+
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.52')
+
+    compile fg.deobf("com.minecraftabnormals:abnormals-core:${mc_version}-${ac_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

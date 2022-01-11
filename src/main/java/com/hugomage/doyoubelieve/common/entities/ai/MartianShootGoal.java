@@ -1,7 +1,7 @@
-package com.hugomage.doyoubelieve.entities.ai;
+package com.hugomage.doyoubelieve.common.entities.ai;
 
-import com.hugomage.doyoubelieve.entities.MartianEntity;
-import com.hugomage.doyoubelieve.entities.RayGunLaserEntity;
+import com.hugomage.doyoubelieve.common.entities.MartianEntity;
+import com.hugomage.doyoubelieve.common.entities.RayGunLaserEntity;
 import com.hugomage.doyoubelieve.registry.DYBEntities;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;

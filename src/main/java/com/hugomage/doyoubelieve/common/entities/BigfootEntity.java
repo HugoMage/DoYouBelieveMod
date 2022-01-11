@@ -1,4 +1,4 @@
-package com.hugomage.doyoubelieve.entities;
+package com.hugomage.doyoubelieve.common.entities;
 
 import com.hugomage.doyoubelieve.registry.DYBSounds;
 import net.minecraft.block.Block;
@@ -52,6 +52,7 @@ public class BigfootEntity extends AnimalEntity implements IAnimatable {
     private int attackAnimationRemainingTicks;
     private int ticksSinceEaten;
     private int ticksSinceRoar;
+
     public BigfootEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
         super(type, worldIn);
         this.setCanPickUpLoot(true);

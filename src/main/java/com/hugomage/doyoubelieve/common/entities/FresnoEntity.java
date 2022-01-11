@@ -1,4 +1,4 @@
-package com.hugomage.doyoubelieve.entities;
+package com.hugomage.doyoubelieve.common.entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

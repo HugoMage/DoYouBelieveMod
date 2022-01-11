@@ -1,8 +1,8 @@
 package com.hugomage.doyoubelieve.client.model;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
-import com.hugomage.doyoubelieve.entities.RayGunLaserEntity;
-import com.hugomage.doyoubelieve.item.RayGunItem;
+import com.hugomage.doyoubelieve.common.entities.RayGunLaserEntity;
+import com.hugomage.doyoubelieve.common.item.RayGunItem;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 

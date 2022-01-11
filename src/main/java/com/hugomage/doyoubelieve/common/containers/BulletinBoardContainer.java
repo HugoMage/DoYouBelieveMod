@@ -1,8 +1,8 @@
-package com.hugomage.doyoubelieve.containers;
+package com.hugomage.doyoubelieve.common.containers;
 
 import com.hugomage.doyoubelieve.registry.DYBBlocks;
 import com.hugomage.doyoubelieve.registry.DYBContainers;
-import com.hugomage.doyoubelieve.tileentities.BulletinBoardTileEntity;
+import com.hugomage.doyoubelieve.common.tileentities.BulletinBoardTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

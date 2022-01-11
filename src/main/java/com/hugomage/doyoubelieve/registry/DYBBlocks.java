@@ -1,8 +1,8 @@
 package com.hugomage.doyoubelieve.registry;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
-import com.hugomage.doyoubelieve.block.BigFeetCarpet;
-import com.hugomage.doyoubelieve.block.BulletinBoardBlock;
+import com.hugomage.doyoubelieve.common.block.BigFeetCarpet;
+import com.hugomage.doyoubelieve.common.block.BulletinBoardBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;

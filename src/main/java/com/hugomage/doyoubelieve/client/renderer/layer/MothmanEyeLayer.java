@@ -2,12 +2,10 @@ package com.hugomage.doyoubelieve.client.renderer.layer;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.client.model.MothmanModel;
-import com.hugomage.doyoubelieve.entities.MothmanEntity;
+import com.hugomage.doyoubelieve.common.entities.MothmanEntity;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.AbstractEyesLayer;
-import net.minecraft.client.renderer.entity.model.SpiderModel;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
