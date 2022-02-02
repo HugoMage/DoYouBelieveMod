@@ -4,7 +4,10 @@ import com.hugomage.doyoubelieve.common.entities.BigfootEntity;
 import com.hugomage.doyoubelieve.common.entities.FresnoEntity;
 import com.hugomage.doyoubelieve.common.entities.JerseyDevilEntity;
 import com.hugomage.doyoubelieve.common.entities.MothmanEntity;
+import com.hugomage.doyoubelieve.common.network.DYBNetworking;
 import com.hugomage.doyoubelieve.registry.*;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -17,7 +20,14 @@ import software.bernie.geckolib3.GeckoLib;
 @Mod(DoYouBelieve.MOD_ID)
 public class DoYouBelieve {
     public static final String MOD_ID = "doyoubelieve";
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+
+    public static ItemGroup clueGroup = new ItemGroup("dyb_clues") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(DYBItems.BIGFOOT_SPAWN_EGG.get());
+        }
+    };
 
     public DoYouBelieve() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -27,6 +37,8 @@ public class DoYouBelieve {
         DYBEntities.ENTITIES.register(bus);
         DYBSounds.SOUNDS.register(bus);
         DYBBiomes.BIOMES.register(bus);
+        DYBTileEntities.TILE_ENTITIES.register(bus);
+        DYBContainers.CONTAINERS.register(bus);
 
         bus.addListener(this::createEntityAttributes);
         bus.addListener(this::registerCommon);
@@ -36,6 +48,7 @@ public class DoYouBelieve {
 
     private void registerCommon(FMLCommonSetupEvent event) {
         DYBBiomes.registerBiomes();
+        DYBNetworking.registerMessages();
     }
 
     private void createEntityAttributes(EntityAttributeCreationEvent event) {
