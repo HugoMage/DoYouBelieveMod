@@ -60,5 +60,3 @@ Temporary Items
 
 # Data Generator cache
 /src/generated/resources/.cache/
-
-.codetogether.ignore

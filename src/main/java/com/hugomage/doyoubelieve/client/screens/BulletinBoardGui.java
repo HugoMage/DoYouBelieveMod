@@ -1,6 +1,5 @@
 package com.hugomage.doyoubelieve.client.screens;
 
-import com.google.common.collect.Lists;
 import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.common.containers.BulletinBoardContainer;
 import com.hugomage.doyoubelieve.common.item.DYBClueItem;
@@ -229,6 +228,10 @@ public class BulletinBoardGui extends ContainerScreen<BulletinBoardContainer> {
 
     private void modifyClueAreasServerSide(List<ClueArea> newCA) {
         DYBNetworking.sendToServer(new PacketSetClueAreas(menu.te.getBlockPos(), newCA));
+    }
+
+    private boolean checkLinkedArea() {
+
     }
 
     @Override
