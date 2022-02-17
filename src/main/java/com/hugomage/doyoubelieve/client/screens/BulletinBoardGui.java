@@ -230,9 +230,9 @@ public class BulletinBoardGui extends ContainerScreen<BulletinBoardContainer> {
         DYBNetworking.sendToServer(new PacketSetClueAreas(menu.te.getBlockPos(), newCA));
     }
 
-    private boolean checkLinkedArea() {
-
-    }
+//    private boolean checkLinkedArea() {
+//
+//    }
 
     @Override
     public boolean mouseClicked(double p_231044_1_, double p_231044_3_, int p_231044_5_) {
