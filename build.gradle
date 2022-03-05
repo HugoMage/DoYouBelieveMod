@@ -130,6 +130,9 @@ repositories {
     maven {
         url = "https://modmaven.k-4u.nl"
     }
+    maven {
+        url "https://maven.blamejared.com"
+    }
 }
 
 dependencies {
@@ -138,6 +141,8 @@ dependencies {
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.52')
 
     compile fg.deobf("com.minecraftabnormals:abnormals-core:${mc_version}-${ac_version}")
+
+    compile fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.5:${ct_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

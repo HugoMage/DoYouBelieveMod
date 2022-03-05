@@ -11,6 +11,7 @@ import com.hugomage.doyoubelieve.common.utils.Area;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -28,6 +29,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class BulletinBoardGui extends ContainerScreen<BulletinBoardContainer> {
@@ -67,6 +69,8 @@ public class BulletinBoardGui extends ContainerScreen<BulletinBoardContainer> {
         for (ClueArea ca : getClueAreasClientSide()) {
             ca.setX(ca.getX() - oldLeftPos + leftPos);
             ca.setY(ca.getY() - oldTopPos + topPos);
+            modifyClueAreasServerSide(getClueAreasClientSide());
+            menu.te.setChanged();
         }
 
         oldLeftPos = leftPos;
@@ -112,8 +116,8 @@ public class BulletinBoardGui extends ContainerScreen<BulletinBoardContainer> {
                     menu.te.setChanged();
                 }
 
-                xToAdd += width + 3;
-                yToAdd += height + 2;
+                xToAdd += width;
+                yToAdd += height;
             }
         }
 
@@ -146,7 +150,7 @@ public class BulletinBoardGui extends ContainerScreen<BulletinBoardContainer> {
                         break;
                 }
 
-                if (flag1 != 0 && flag2 != 0 && flag1 != flag2 && !ca1.getLinkedAreaID().contains(ca2.getClueAreaID()) && !ca2.getLinkedAreaID().contains(ca1.getClueAreaID())) {
+                if (flag1 != 0 && flag2 != 0 && flag1 != flag2 && checkLinkedArea(ca1, ca2)) {
                     if (menu.te.getInventory().getStackInSlot(1).isEmpty()) {
                         point1 = null;
                         point2 = null;
@@ -230,9 +234,29 @@ public class BulletinBoardGui extends ContainerScreen<BulletinBoardContainer> {
         DYBNetworking.sendToServer(new PacketSetClueAreas(menu.te.getBlockPos(), newCA));
     }
 
-//    private boolean checkLinkedArea() {
-//
-//    }
+    private boolean checkLinkedArea(ClueArea ca1, ClueArea ca2) {
+        boolean doesNotHaveDirectLink = !ca1.getLinkedAreaID().contains(ca2.getClueAreaID()) && !ca2.getLinkedAreaID().contains(ca1.getClueAreaID());
+        return doesNotHaveDirectLink && checkIndirectLinks(ca1, ca2);
+    }
+
+    private boolean checkIndirectLinks(ClueArea ca1, ClueArea ca2) {
+        AtomicBoolean flag1 = new AtomicBoolean(true);
+        AtomicBoolean flag2 = new AtomicBoolean(true);
+
+        for (int linked : ca1.getLinkedAreaID()) {
+            getClueAreasClientSide().stream().filter(element -> element.getClueAreaID() == linked).findAny().ifPresent(area -> {
+                flag1.set(!area.getLinkedAreaID().contains(ca2.getClueAreaID()));
+            });
+        }
+
+        for (int linked : ca2.getLinkedAreaID()) {
+            getClueAreasClientSide().stream().filter(element -> element.getClueAreaID() == linked).findAny().ifPresent(area -> {
+                flag2.set(!area.getLinkedAreaID().contains(ca1.getClueAreaID()));
+            });
+        }
+
+        return flag1.get() && flag2.get();
+    }
 
     @Override
     public boolean mouseClicked(double p_231044_1_, double p_231044_3_, int p_231044_5_) {
