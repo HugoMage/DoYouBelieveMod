@@ -2,9 +2,12 @@ package com.hugomage.doyoubelieve.client;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.client.renderer.*;
+import com.hugomage.doyoubelieve.client.screens.BulletinBoardGui;
 import com.hugomage.doyoubelieve.common.item.DYBSpawnEggItem;
 import com.hugomage.doyoubelieve.registry.DYBBlocks;
+import com.hugomage.doyoubelieve.registry.DYBContainers;
 import com.hugomage.doyoubelieve.registry.DYBEntities;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -30,6 +33,8 @@ public class ClientStuff {
         RenderingRegistry.registerEntityRenderingHandler(DYBEntities.RAYGUNLASER.get(), RayGunLaserRenderer::new);
 
         RenderTypeLookup.setRenderLayer(DYBBlocks.BIGFOOT_TRACKS.get(), RenderType.translucent());
+
+        ScreenManager.register(DYBContainers.BULLETIN_BOARD.get(), BulletinBoardGui::new);
     }
 
 

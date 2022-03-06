@@ -2,6 +2,8 @@ package com.hugomage.doyoubelieve.registry;
 
 import com.hugomage.doyoubelieve.DoYouBelieve;
 import com.hugomage.doyoubelieve.client.renderer.RayGunRenderer;
+import com.hugomage.doyoubelieve.common.item.DYBClueItem;
+import com.hugomage.doyoubelieve.common.item.DYBClues;
 import com.hugomage.doyoubelieve.common.item.DYBSpawnEggItem;
 
 import com.hugomage.doyoubelieve.common.item.RayGunItem;
@@ -21,9 +23,17 @@ public class DYBItems {
     public static final RegistryObject<DYBSpawnEggItem> MARTIAN_SPAWN_EGG = ITEMS.register("martian_spawn_egg",() -> new DYBSpawnEggItem(DYBEntities.MARTIAN, 0x802817, 0x5E2944 , new Item.Properties().tab(ItemGroup.TAB_MATERIALS)));
 
     // Items
-    public static final RegistryObject<RayGunItem> RAYGUN = ITEMS.register("raygun",
-            () -> new RayGunItem(new Item.Properties().setISTER(() -> RayGunRenderer::new).setNoRepair()));
+    public static final RegistryObject<RayGunItem> RAYGUN = ITEMS.register("raygun", () -> new RayGunItem(new Item.Properties().setISTER(() -> RayGunRenderer::new).setNoRepair()));
+    public static final RegistryObject<Item> CLUE_STRING = ITEMS.register("clue_string", () -> new Item(new Item.Properties()));
 
     // Block Items
     public static final RegistryObject<Item> BIGFOOT_TRACKS_ITEM = ITEMS.register("bigfoot_tracks", () -> new BlockItem(DYBBlocks.BIGFOOT_TRACKS.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+    public static final RegistryObject<Item> BULLETIN_BOARD_ITEM = ITEMS.register("bulletin_board", () -> new BlockItem(DYBBlocks.BULLETIN_BOARD.get(), new Item.Properties().tab(ItemGroup.TAB_DECORATIONS)));
+
+    // Clues
+    static {
+        for (DYBClues clue : DYBClues.values()) {
+            ITEMS.register(clue.getId() + "_clue", () -> new DYBClueItem(clue));
+        }
+    }
 }
